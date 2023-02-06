@@ -16,7 +16,7 @@ export class Form extends React.Component {
                />
             </div>
             <div>
-               <label>Tempo</label>
+               <label>Time</label>
                <input
                   type="time"
                   step={1}
