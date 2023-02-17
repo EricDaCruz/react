@@ -1,13 +1,15 @@
+import { useState } from "react";
 import { Item } from "./Item";
 import style from "./List.module.scss";
 
-interface Task {
+export interface Task {
    title: string;
    time: string;
 }
 
 export function List() {
-   const tasks: Task[] = [
+
+   const [tasks, setTasks] = useState<Task[]>([
       {
          title: "React",
          time: "02:00:00",
@@ -20,7 +22,9 @@ export function List() {
          title: "Typescript",
          time: "03:00:00",
       },
-   ];
+   ]);
+
+
 
    return (
       <aside className={style.listaTarefas}>
