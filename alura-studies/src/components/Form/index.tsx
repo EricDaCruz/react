@@ -1,17 +1,20 @@
 import React, { FormEvent } from "react";
+import { Task } from "../../types/task";
 import { Button } from "../Button";
 
 import style from "./Form.module.scss";
 
-export class Form extends React.Component {
+export class Form extends React.Component<{
+   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+}> {
    state = {
-      task: "",
+      title: "",
       time: "00:00:00",
    };
 
    saveTask(event: FormEvent) {
       event.preventDefault();
-      console.log(this.state);
+      this.props.setTasks((state) => [...state, {...this.state}]);
    }
 
    render(): React.ReactNode {
@@ -24,9 +27,9 @@ export class Form extends React.Component {
                   name="Task"
                   id="task"
                   placeholder="What do you want to study?"
-                  value={this.state.task}
+                  value={this.state.title}
                   onChange={(event) =>
-                     this.setState({ ...this.state, task: event.target.value })
+                     this.setState({ ...this.state, title: event.target.value })
                   }
                   required
                />
@@ -47,7 +50,7 @@ export class Form extends React.Component {
                />
             </div>
 
-            <Button text="Add" />
+            <Button text="Add" type="submit" />
          </form>
       );
    }
