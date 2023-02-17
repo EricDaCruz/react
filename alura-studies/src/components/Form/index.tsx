@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "../Button";
 
-import style from './Form.module.scss'
+import style from "./Form.module.scss";
 
 export class Form extends React.Component {
    render(): React.ReactNode {
@@ -29,7 +29,7 @@ export class Form extends React.Component {
                />
             </div>
 
-            <Button />
+            <Button text="Add" />
          </form>
       );
    }
