@@ -1,6 +1,7 @@
 import React, { FormEvent } from "react";
 import { Task } from "../../types/task";
 import { Button } from "../Button";
+import { v4 as uuidv4 } from "uuid";
 
 import style from "./Form.module.scss";
 
@@ -14,7 +15,14 @@ export class Form extends React.Component<{
 
    saveTask(event: FormEvent) {
       event.preventDefault();
-      this.props.setTasks((state) => [...state, {...this.state}]);
+      this.props.setTasks((state) => [
+         ...state,
+         { ...this.state, selected: false, completed: false, id: uuidv4() },
+      ]);
+      this.setState({
+         title: "",
+         time: "00:00:00",
+      });
    }
 
    render(): React.ReactNode {
