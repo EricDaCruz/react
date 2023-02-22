@@ -20,11 +20,30 @@ function App() {
       );
    }
 
+   function finishTask() {
+      if (selected) {
+         setTasks((tasks) =>
+            tasks.map((task) => {
+               if (task.id === selected.id) {
+                  setSelected(undefined);
+                  return {
+                     ...task,
+                     selected: false,
+                     completed: true,
+                  };
+               }
+
+               return task;
+            })
+         );
+      }
+   }
+
    return (
       <div className={style.AppStyle}>
          <Form setTasks={setTasks} />
          <List tasks={tasks} selectTask={selectTask} />
-         <Timer selected={selected}/>
+         <Timer selected={selected} finishTask={finishTask} />
       </div>
    );
 }

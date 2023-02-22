@@ -6,7 +6,12 @@ import { Clock } from "./Clock";
 
 import style from "./Timer.module.scss";
 
-export function Timer({ selected }: { selected: Task | undefined }) {
+interface ITimerProps {
+   selected: Task | undefined;
+   finishTask: () => void;
+}
+
+export function Timer({ selected, finishTask }: ITimerProps) {
    const [time, setTime] = useState<number>();
 
    useEffect(() => {
@@ -21,7 +26,7 @@ export function Timer({ selected }: { selected: Task | undefined }) {
             setTime(counter - 1);
             return regressive(counter - 1);
          }
-
+         finishTask();
       }, 1000);
    }
 
