@@ -1,16 +1,17 @@
 import { Task } from "../../../types/task";
-import style from "../List.module.scss";
+import style from "./Item.module.scss";
 
 interface IItemProps extends Task {
    selectTask: (task: Task) => void;
 }
 
 export function Item({ selectTask, ...task }: IItemProps) {
-   console.log(task);
-
+  
    return (
       <li
-         className={style.item}
+         className={`${style.item} ${
+            task.selected ? style.itemSelecionado : ""
+         }`}
          onClick={() => {
             selectTask(task);
          }}

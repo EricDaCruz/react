@@ -10,17 +10,20 @@ function App() {
    const [tasks, setTasks] = useState<Task[]>([]);
    const [selected, setSelected] = useState<Task>();
 
-   function selectTask(task: Task){
-      setSelected(task)
+   function selectTask(task: Task) {
+      setSelected(task);
+      setTasks((tasks) =>
+         tasks.map((t) => ({
+            ...t,
+            selected: t.id === task.id,
+         }))
+      );
    }
 
    return (
       <div className={style.AppStyle}>
-         <Form setTasks={setTasks}/>
-         <List 
-            tasks={tasks} 
-            selectTask={selectTask}
-         />
+         <Form setTasks={setTasks} />
+         <List tasks={tasks} selectTask={selectTask} />
          <Timer />
       </div>
    );
