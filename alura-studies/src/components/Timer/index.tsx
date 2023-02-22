@@ -15,13 +15,23 @@ export function Timer({ selected }: { selected: Task | undefined }) {
       }
    }, [selected]);
 
+   function regressive(counter: number = 0) {
+      setTimeout(() => {
+         if (counter > 0) {
+            setTime(counter - 1);
+            return regressive(counter - 1);
+         }
+
+      }, 1000);
+   }
+
    return (
       <div className={style.cronometro}>
          <p className={style.titulo}>Choose a card and start the timer:</p>
          <div className={style.relogioWrapper}>
-            <Clock time={time}/>
+            <Clock time={time} />
          </div>
-         <Button text="Start" type="button" />
+         <Button text="Start" onClick={() => regressive(time)} />
       </div>
    );
 }

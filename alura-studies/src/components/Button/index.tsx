@@ -2,15 +2,16 @@ import React from "react";
 
 import style from "./Button.module.scss";
 
-export class Button extends React.Component<{
+interface IButtonProps {
    text: string;
-   type: "button" | "submit" | "reset" | undefined;
-}> {
-   render(): React.ReactNode {
-      return (
-         <button type={this.props.type} className={style.botao}>
-            {this.props.text}
-         </button>
-      );
-   }
+   type?: "button" | "submit" | "reset" | undefined;
+   onClick?: () => void;
+}
+
+export function Button({ type, text, onClick = () => null }: IButtonProps) {
+   return (
+      <button type={type} className={style.botao} onClick={onClick}>
+         {text}
+      </button>
+   );
 }
